@@ -8,7 +8,38 @@
   </head>
   <body>
     <h1>NOAA Climate Data</h1>
+
     <div id="table-container">
+      <!-- Form for /data endpoint parameters -->
+      <h2>Fetch Climate Data</h2>
+      <form id="data-form">
+        <label for="datasetid">Dataset ID:</label>
+        <input
+          type="text"
+          id="datasetid"
+          name="datasetid"
+          placeholder="e.g., GHCND"
+          required
+        />
+
+        <label for="locationid">Location ID:</label>
+        <input
+          type="text"
+          id="locationid"
+          name="locationid"
+          placeholder="e.g., ZIP:28801"
+          required
+        />
+
+        <label for="startdate">Start Date:</label>
+        <input type="date" id="startdate" name="startdate" required />
+
+        <label for="enddate">End Date:</label>
+        <input type="date" id="enddate" name="enddate" required />
+
+        <button type="submit">Fetch Data</button>
+      </form>
+
       <!-- Stations Table -->
       <h2>Climate Stations</h2>
       <table id="stations-table">
@@ -34,10 +65,28 @@
             <th>Dataset ID</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Min Date</th>
+            <th>Max Date</th>
           </tr>
         </thead>
         <tbody id="datasets-table-body">
           <!-- Dataset data will be inserted here -->
+        </tbody>
+      </table>
+
+      <!-- Climate Data Table -->
+      <h2>Climate Data Results</h2>
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Data Type</th>
+            <th>Value</th>
+            <th>Station ID</th>
+          </tr>
+        </thead>
+        <tbody id="data-table-body">
+          <!-- Climate data will be inserted here -->
         </tbody>
       </table>
     </div>

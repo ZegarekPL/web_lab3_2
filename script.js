@@ -1,6 +1,7 @@
 const apiToken = "tYQjMOGLpioxYCWBrWmPSnybXTZQuuzu";
 const stationsApiUrl = "https://www.ncei.noaa.gov/cdo-web/api/v2/stations";
 const datasetsApiUrl = "https://www.ncei.noaa.gov/cdo-web/api/v2/datasets";
+const dataApiUrl = "https://www.ncei.noaa.gov/cdo-web/api/v2/data";
 
 async function fetchStations() {
   try {
@@ -37,15 +38,40 @@ async function fetchDatasets() {
       "id",
       "name",
       "description",
+      "mindate",
+      "maxdate",
     ]);
   } catch (error) {
     console.error("Error fetching dataset data:", error);
   }
 }
 
+async function fetchClimateData(datasetid, locationid, startdate, enddate) {
+  try {
+    //const url = `${dataApiUrl}?datasetid=${datasetid}&locationid=${locationid}&startdate=${startdate}&enddate=${enddate}`;
+    const url =
+      "https://www.ncei.noaa.gov/cdo-web/api/v2/data?datasetid=GHCND&locationid=ZIP:28801&startdate=2010-05-01&enddate=2010-05-01";
+    const response = await fetch(url, {
+      headers: { token: apiToken },
+    });
+    if (!response.ok)
+      throw new Error("Failed to fetch climate data from NOAA API");
+    const data = await response.json();
+    populateTable("data-table-body", data.results, [
+      "date",
+      "datatype",
+      "value",
+      "station",
+    ]);
+  } catch (error) {
+    console.error("Error fetching climate data:", error);
+  }
+}
+
 function populateTable(tableBodyId, data, fields) {
   const tableBody = document.getElementById(tableBodyId);
   tableBody.innerHTML = "";
+
   data.forEach((item) => {
     const row = document.createElement("tr");
 
@@ -58,6 +84,19 @@ function populateTable(tableBodyId, data, fields) {
     tableBody.appendChild(row);
   });
 }
+
+document
+  .getElementById("data-form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const datasetid = document.getElementById("datasetid").value;
+    const locationid = document.getElementById("locationid").value;
+    const startdate = document.getElementById("startdate").value;
+    const enddate = document.getElementById("enddate").value;
+
+    fetchClimateData(datasetid, locationid, startdate, enddate);
+  });
 
 fetchStations();
 fetchDatasets();
