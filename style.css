@@ -7,7 +7,7 @@ body {
   padding: 20px;
 }
 
-h1 {
+h1, h2 {
   color: #333;
 }
 
@@ -15,6 +15,7 @@ h1 {
   width: 90%;
   max-width: 800px;
   overflow-x: auto;
+  margin-top: 20px;
 }
 
 table {

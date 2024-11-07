@@ -1,29 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NOAA Climate Stations</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <h1>NOAA Climate Stations Data</h1>
-  <div id="table-container">
-    <table id="stations-table">
-      <thead>
-        <tr>
-          <th>Station ID</th>
-          <th>Name</th>
-          <th>State</th>
-          <th>Latitude</th>
-          <th>Longitude</th>
-        </tr>
-      </thead>
-      <tbody id="table-body">
-        <!-- Data will be inserted here by JavaScript -->
-      </tbody>
-    </table>
-  </div>
-  <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NOAA Climate Data</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>NOAA Climate Data</h1>
+    <div id="table-container">
+      <!-- Stations Table -->
+      <h2>Climate Stations</h2>
+      <table id="stations-table">
+        <thead>
+          <tr>
+            <th>Station ID</th>
+            <th>Name</th>
+            <th>State</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+          </tr>
+        </thead>
+        <tbody id="stations-table-body">
+          <!-- Station data will be inserted here -->
+        </tbody>
+      </table>
+
+      <!-- Datasets Table -->
+      <h2>Climate Datasets</h2>
+      <table id="datasets-table">
+        <thead>
+          <tr>
+            <th>Dataset ID</th>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody id="datasets-table-body">
+          <!-- Dataset data will be inserted here -->
+        </tbody>
+      </table>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
 </html>
